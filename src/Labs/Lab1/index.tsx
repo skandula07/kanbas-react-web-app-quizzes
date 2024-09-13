@@ -3,6 +3,7 @@ import DropDowns from "./DropDowns";
 import Forms from "./Forms";
 import Headings from "./Headings";
 import Lists from "./Lists";
+import OtherFields from "./OtherFields";
 import Tables from "./Tables";
 
 export default function Lab1() {
@@ -19,6 +20,7 @@ export default function Lab1() {
       <Forms />
       <Buttons />
       <DropDowns />
+      <OtherFields />
     </div>
   );
 }
