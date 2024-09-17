@@ -23,7 +23,7 @@ export default function TOC() {
         </Link>
       </li>
       <li>
-        <Link id="wd-kanbas" to="/Kanbas">
+        <Link id="wd-k" to="/Kanbas">
           Kanbas
         </Link>
       </li>
