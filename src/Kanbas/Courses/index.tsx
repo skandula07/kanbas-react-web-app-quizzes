@@ -19,6 +19,7 @@ export default function Courses() {
           <td valign="top">
             <Routes>
               <Route path="/" element={<Navigate to="Home" />} />
+              <Route path="Home" element={<Home />} />
               <Route path="Modules" element={<Modules />} />
               <Route path="Assignments" element={<Assignments />} />
               <Route path="Assignments/:aid" element={<AssignmentEditor />} />
