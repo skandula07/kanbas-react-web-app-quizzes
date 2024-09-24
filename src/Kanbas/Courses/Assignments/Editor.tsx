@@ -1,12 +1,11 @@
 export default function AssignmentEditor() {
   return (
     <div id="wd-assignments-editor">
-      <label htmlFor="wd-name">Assignment Name</label>
-      &nbsp;
+      <h3 id="wd-name">Assignment Name</h3>
       <input id="wd-name" value="A1 - ENV + HTML" />
       <br />
       <br />
-      <textarea id="wd-description">
+      <textarea id="wd-description" cols={44} rows={10}>
         The assignment is available online Submit a link to the landing page of
         your Web application running on Netflify. The landing page should
         include the following: Your full name and section Links to each of the
@@ -112,11 +111,61 @@ export default function AssignmentEditor() {
         <br />
         <tr>
           <td align="right" valign="top">
-            <label htmlFor="wd-group">Assign</label>
+            <label>Assign</label>
           </td>
-          <td>
+          <td align="left" valign="top">
+            <table>
+              <tr>
+                <td>
+                  <label htmlFor="wd-assign-to">Assign to</label> <br />
+                  <input
+                    id="wd-assign-to"
+                    value="Everyone"
+                    defaultValue="Everyone"
+                  />
+                  <br />
+                  <br />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label htmlFor="wd-due-date">Due</label> <br />
+                  <input
+                    id="wd-due-date"
+                    type="date"
+                    value="2024-05-13"
+                    defaultValue="2024-05-13"
+                  />
+                  <br />
+                  <br />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label htmlFor="wd-available-from">Available from</label>{" "}
+                  <br />
+                  <input
+                    id="wd-available-from"
+                    type="date"
+                    value="2024-05-06"
+                    defaultValue="2024-05-06"
+                  />
+                </td>
+                <td>
+                  <label htmlFor="wd-available-until">Until</label> <br />
+                  <input
+                    id="wd-available-until"
+                    type="date"
+                    value="2024-05-20"
+                    defaultValue="2024-05-20"
+                  />
+                </td>
+              </tr>
+            </table>
+          </td>
+          {/* <td>
             <label htmlFor="wd-assign-to">Assign to</label> <br />
-            <input id="wd-assign-to" value="" defaultValue="Everyone" />
+            <input id="wd-assign-to" value="Everyone" defaultValue="Everyone" />
             <br />
             <br />
             <label htmlFor="wd-due-date">Due</label> <br />
@@ -128,13 +177,35 @@ export default function AssignmentEditor() {
             />
             <br />
             <br />
-            <label htmlFor="wd-available-from">Available from</label> <br />
-            <input
-              id="wd-available-from"
-              type="date"
-              value="2024-05-06"
-              defaultValue="2024-05-06"
-            />
+            <td>
+              <label htmlFor="wd-available-from">Available from</label> <br />
+              <input
+                id="wd-available-from"
+                type="date"
+                value="2024-05-06"
+                defaultValue="2024-05-06"
+              />
+            </td>
+            <td>
+              <label htmlFor="wd-available-until">Until</label> <br />
+              <input
+                id="wd-available-until"
+                type="date"
+                value="2024-05-20"
+                defaultValue="2024-05-20"
+              />
+            </td>
+          </td> */}
+        </tr>
+      </table>
+      <hr></hr>
+      <table align="right">
+        <tr>
+          <td>
+            <button>Cancel</button>{" "}
+          </td>
+          <td>
+            <button>Save</button>
           </td>
         </tr>
       </table>
