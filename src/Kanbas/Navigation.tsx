@@ -30,6 +30,9 @@ export default function KanbasNavigation() {
         Labs
       </Link>
       <br />
+      <div>Gillian Scott</div>
+      <div>CS4550 - 01</div>
+      <br />
     </div>
   );
 }
