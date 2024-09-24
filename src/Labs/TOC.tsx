@@ -27,6 +27,17 @@ export default function TOC() {
           Kanbas
         </Link>
       </li>
+      <li>
+        <Link
+          id="wd-github"
+          to={{
+            pathname: "https://github.com/gscott04/kanbas-react-web-app-cs4550",
+          }}
+          target="_blank"
+        >
+          GitHub
+        </Link>
+      </li>
     </ul>
   );
 }

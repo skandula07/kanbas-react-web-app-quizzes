@@ -8,8 +8,6 @@ function App() {
   return (
     <HashRouter>
       <div>
-        <h3>Gillian Scott</h3>
-        <h4>CS 4550 - Section 01</h4>
         <Routes>
           <Route path="/" element={<Navigate to="/Kanbas" />} />
           <Route path="/Labs/*" element={<Labs />} />
