@@ -28,15 +28,14 @@ export default function TOC() {
         </Link>
       </li>
       <li>
-        <Link
+        <a
           id="wd-github"
-          to={{
-            pathname: "https://github.com/gscott04/kanbas-react-web-app-cs4550",
-          }}
+          href="https://github.com/gscott04/kanbas-react-web-app-cs4550"
           target="_blank"
+          rel="noreferrer"
         >
           GitHub
-        </Link>
+        </a>
       </li>
     </ul>
   );
