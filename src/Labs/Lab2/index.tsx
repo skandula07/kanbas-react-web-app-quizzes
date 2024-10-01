@@ -9,6 +9,7 @@ import GridLayout from "./GridLayout";
 import Margins from "./Margins";
 import Padding from "./Padding";
 import Positions from "./Positions";
+import ReactIconsSampler from "./ReactIcons";
 import Style from "./Style";
 import Zindex from "./Zindex";
 import "./index.css";
@@ -24,7 +25,6 @@ export default function Lab2() {
         Although it's very convenient it is considered bad practice and you
         should avoid using the style attribute
       </p>
-
       <div id="wd-css-id-selectors">
         <h3>ID selectors</h3>
         <p id="wd-id-selector-1">
@@ -36,7 +36,6 @@ export default function Lab2() {
           feel
         </p>
       </div>
-
       <div id="wd-css-class-selectors">
         <h3>Class selectors</h3>
         <p className="wd-class-selector">
@@ -47,7 +46,6 @@ export default function Lab2() {
           This heading has same style as paragraph above
         </h4>
       </div>
-
       <div id="wd-css-document-structure">
         <div className="wd-selector-1">
           <h3>Document structure selectors</h3>
@@ -71,7 +69,6 @@ export default function Lab2() {
           </div>
         </div>
       </div>
-
       <ForegroundColors />
       <BackgroundColors />
       <Borders />
@@ -84,9 +81,7 @@ export default function Lab2() {
       <Float />
       <GridLayout />
       <Flex />
-
-      <label htmlFor="usernameFld">Username</label>
-      <input id="usernameFld" type="text" title="tooltip" placeholder="alice" />
+      <ReactIconsSampler />
     </div>
   );
 }
