@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+body * {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (min-width: 768px) {
+  #wd-kanbas .wd-main-content-offset {
+    padding-left: 140px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  #wd-courses .wd-main-content-offset {
+    padding-left: 140px !important;
+  }
+}
+/* .list-group.wd > .list-group-item {
+  color: white;
+  background-color: black;
+  border-left: 3px solid black;
+}
+
+.list-group.wd > .list-group-item.active {
+  color: red !important;
+  background-color: white !important;
+  border-left: 3px solid white !important;
+} */
+
+.list-group.wd > .list-group-item.active {
+  color: black;
+  background-color: white;
+  border-left: 3px solid black !important;
+}
+
+.list-group > .list-group-item.kanbas-nav {
+  color: #dc4c64;
+  /* background-color: white; */
+  border-left: 3px solid white;
+}
+
+.list-group > .list-group-item.kanbas-nav.active {
+  color: black !important;
+  background-color: white;
+  border-left: 3px solid black !important;
+}
+
+.list-group > .list-group-item.main-nav {
+  color: white;
+  background-color: black;
+  border-left: 3px solid black;
+}
+
+.list-group > .list-group-item.main-nav.active {
+  color: #dc4c64 !important;
+  background-color: white !important;
+  border-left: 3px solid black !important;
+}
+
+.btn-secondary {
+  --bs-btn-color: #000 !important;
+  --bs-btn-bg: #c7cdd1 !important;
+  --bs-btn-border-color: #c7cdd1 !important;
+  --bs-btn-hover-color: #fff !important;
+}
+.bg-secondary {
+  --bs-secondary-rgb: 199, 205, 209;
+}
+.list-group-item {
+  --bs-list-group-border-color: gray;
+}
+.wd-lesson {
+  border-left: 3px solid green !important;
+}
+/* .assignment-search {
+
+} */
+
+.wd-rounded-corners-all-around {
+  border-radius: 20px;
+}
+.wd-border-thin {
+  border-width: 1px;
+}
+.wd-border-black {
+  border-color: black;
+}
+.wd-border-solid {
+  border-style: solid;
+}
+.wd-padding-thin {
+  padding: 5px;
+}
+
+.assignment-icons {
+  align-content: center;
+  width: 10%;
+}
+.assignment-icons.right {
+  margin-right: 0px;
+}
+
+.assignment-info {
+  width: -webkit-fill-available;
+}
+
+.edit-box {
+  border-color: #c7cdd1 !important;
+  background-color: white !important;
+  color: black;
+}
+
+.col-form-label.main {
+  width: fit-content;
+}
+
+.editor-margin {
+  margin-left: 40px;
+  margin-right: 20px;
+}
+
+.side-padding {
+  padding-left: 20px;
+  padding-right: 20px;
+}
