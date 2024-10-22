@@ -11,7 +11,7 @@ import Tables from "./Tables";
 
 export default function Lab1() {
   return (
-    <div>
+    <div className="container">
       <h2>Lab 1</h2>
       <Headings />
       <Paragraphs />

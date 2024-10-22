@@ -49,7 +49,7 @@ export default function TOC() {
           rel="noreferrer"
           className="nav-link"
         >
-          GitHub
+          My GitHub
         </a>
       </li>
     </ul>
