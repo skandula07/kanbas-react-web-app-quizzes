@@ -11,7 +11,7 @@ import Tables from "./Tables";
 
 export default function Lab1() {
   return (
-    <div className="container">
+    <div id="wd-lab1" className="container">
       <h2>Lab 1</h2>
       <Headings />
       <Paragraphs />
@@ -20,6 +20,10 @@ export default function Lab1() {
       <Images />
       <Forms />
       <Anchors />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 }

@@ -14,11 +14,16 @@ export default function House() {
     },
     owners: ["Alice", "Bob"],
   };
+  const a = [1, 2, 3];
+  const e = [4, ...a];
+  const [f] = e;
+  console.log(f);
   console.log(house);
   return (
     <div id="wd-house">
       <h4>House</h4>
       <h5>bedrooms</h5>
+      {f}
       {house.bedrooms}
       <h5>bathrooms</h5>
       {house.bathrooms}

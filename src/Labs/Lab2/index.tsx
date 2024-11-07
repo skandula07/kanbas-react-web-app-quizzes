@@ -94,6 +94,10 @@ export default function Lab2() {
       <BootstrapLists />
       <BootstrapForms />
       <BootstrapNavigation />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 }
