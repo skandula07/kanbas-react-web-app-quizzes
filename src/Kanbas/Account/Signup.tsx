@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function Signup() {
   return (
     <div id="wd-signup-screen">
-      <h1>Sign up</h1>
+      <h3>Sign up</h3>
       <input
         id="wd-username"
         placeholder="username"

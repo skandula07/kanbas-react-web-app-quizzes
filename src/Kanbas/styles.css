@@ -125,3 +125,29 @@ body * {
   padding-left: 20px;
   padding-right: 20px;
 }
+
+#wd-modules-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.25rem; /* Tiny gap between buttons */
+  align-items: center; /* Vertically center buttons */
+}
+
+#wd-modules-controls button,
+#wd-modules-controls .dropdown {
+  height: 40px; /* Fixed height for all buttons */
+  min-width: 120px; /* Minimum width to ensure buttons don't shrink */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem; /* Font size */
+}
+
+#wd-modules-controls .dropdown-toggle {
+  display: flex;
+  align-items: center;
+}
+
+#wd-modules-controls .dropdown-menu {
+  min-width: 250px; /* Optional: ensures dropdown has minimum width */
+}
