@@ -7,6 +7,8 @@ import store from "./Kanbas/store";
 import { Provider } from "react-redux";
 
 function App() {
+  console.log(process.env.REACT_APP_API_URL); // Example of logging an environment variable
+  console.log(process.env.PORT); // To check if PORT is being loaded
   return (
     <HashRouter>
       <Provider store={store}>
