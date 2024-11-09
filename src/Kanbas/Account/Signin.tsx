@@ -49,25 +49,10 @@ export default function Signin() {
         {" "}
         Sign in{" "}
       </button>
-      {/*<Link
-        id="wd-signin-btn"
-        to="/Kanbas/Account/Profile"
-        className="btn btn-primary w-100"
-      >
-        Sign in{" "}
-      </Link>*/}
       <br />
       <Link id="wd-signup-link" to="/Kanbas/Account/Signup">
         Sign up
       </Link>
-
-      {/* <Link id="wd-signin-btn" to="/Kanbas/Dashboard">
-        Sign in
-      </Link>
-      <br />
-      <Link id="wd-signup-link" to="/Kanbas/Account/Signup">
-        Sign up
-      </Link> */}
     </div>
   );
 }

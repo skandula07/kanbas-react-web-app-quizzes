@@ -1,4 +1,3 @@
-//import { BsGripVertical } from "react-icons";
 import GreenCheckmark from "./GreenCheckmark";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { BsPlus } from "react-icons/bs";

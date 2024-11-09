@@ -3,9 +3,8 @@ import ModuleControlButtons from "./ModuleControlButtons";
 import ModulesControls from "./ModulesControls";
 import { BsGripVertical } from "react-icons/bs";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router";
-import * as db from "../../Database";
 
 import { addModule, editModule, updateModule, deleteModule } from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,9 +12,9 @@ import { useSelector, useDispatch } from "react-redux";
 export default function Modules() {
   const { cid } = useParams();
   const [moduleName, setModuleName] = useState("");
-  const { modules } = useSelector((state: any) => state.modules);
+  const { modules } = useSelector((state: any) => state.modulesReducer);
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state: any) => state.account);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   const isFaculty = currentUser && currentUser.role === "FACULTY";
 
   return (
@@ -39,7 +38,10 @@ export default function Modules() {
         {modules
           .filter((module: any) => module.course === cid)
           .map((module: any) => (
-            <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
+            <li
+              key={module._id}
+              className="wd-module list-group-item p-0 mb-5 fs-5 border-gray"
+            >
               <div className="wd-title p-3 ps-2 bg-secondary">
                 <BsGripVertical className="me-2 fs-3" />
                 {!module.editing && module.name}
@@ -72,7 +74,10 @@ export default function Modules() {
               {module.lessons && (
                 <ul className="wd-lessons list-group rounded-0">
                   {module.lessons.map((lesson: any) => (
-                    <li className="wd-lesson list-group-item p-3 ps-1">
+                    <li
+                      key={lesson._id}
+                      className="wd-lesson list-group-item p-3 ps-1"
+                    >
                       <BsGripVertical className="me-2 fs-3" />
                       {lesson.name}
                       {isFaculty && <LessonControlButtons />}

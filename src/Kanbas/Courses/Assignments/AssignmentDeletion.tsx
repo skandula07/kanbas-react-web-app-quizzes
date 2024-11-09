@@ -1,12 +1,14 @@
 export default function AssignmentDeletion({
+  assignmentId,
   assignmentTitle,
   deleteAssignment,
 }: {
+  assignmentId: string;
   assignmentTitle: string;
-  deleteAssignment: () => void;
+  deleteAssignment: (id: string) => void;
 }) {
   const handleDelete = () => {
-    deleteAssignment();
+    deleteAssignment(assignmentId);
   };
 
   return (

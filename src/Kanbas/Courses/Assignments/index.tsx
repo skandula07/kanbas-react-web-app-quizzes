@@ -1,45 +1,24 @@
 import { BsGripVertical } from "react-icons/bs";
 import { PiNotePencil } from "react-icons/pi";
 import AssignmentsControls from "./AssignmentsControls";
-import LessonControlButtons from "../Modules/LessonControlButtons";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { useParams } from "react-router";
-import * as db from "../../Database";
-import { useState } from "react";
-import {
-  addAssignment,
-  deleteAssignment,
-  updateAssignment,
-  editAssignment,
-} from "./reducer";
+
+import { deleteAssignment } from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
-import { FaTrash } from "react-icons/fa";
+
+import AssignmentRightButtons from "./AssignmentRightButtons";
 
 export default function Assignments() {
   const { cid } = useParams();
-  const [assignmentTitle, setAssignmentTitle] = useState("");
-  //const assignments = db.assignments;
-  //const [assignments, setAssignments] = useState<any[]>(db.assignments);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const isFaculty = currentUser && currentUser.role === "FACULTY";
+
   const assignments = useSelector(
-    (state: any) => state.assignments.assignments
+    (state: any) => state.assignmentsReducer.assignments
   );
-  const [assignmentToDelete, setAssignmentToDelete] = useState<{
-    id: string;
-    title: string;
-  } | null>(null);
-  console.log("Assignments in Redux state:", assignments);
+
   const dispatch = useDispatch();
-
-  const handleDeleteClick = (assignmentId: string, assignmentTitle: string) => {
-    setAssignmentToDelete({ id: assignmentId, title: assignmentTitle });
-  };
-
-  const deleteSelectedAssignment = () => {
-    if (assignmentToDelete) {
-      dispatch(deleteAssignment(assignmentToDelete.id));
-      setAssignmentToDelete(null);
-    }
-  };
 
   return (
     <div>
@@ -66,12 +45,14 @@ export default function Assignments() {
                   >
                     <div className="assignment-icons">
                       <BsGripVertical className="me-2 fs-3" />
-                      <a
-                        className="wd-assignment-edit"
-                        href={`#/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
-                      >
-                        <PiNotePencil className="text-success me-2 fs-3" />
-                      </a>
+                      {isFaculty && (
+                        <a
+                          className="wd-assignment-edit"
+                          href={`#/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
+                        >
+                          <PiNotePencil className="text-success me-2 fs-3" />
+                        </a>
+                      )}
                     </div>
                     <div className="assignment-info">
                       {assignment.title}
@@ -112,11 +93,15 @@ export default function Assignments() {
                       </div>
                     </div>
                     <div className="assignment-icons right">
-                      <FaTrash
-                        className="text-danger me-2 mb-1"
-                        onClick={() => deleteAssignment(assignment)}
-                      />
-                      <LessonControlButtons />
+                      {isFaculty && (
+                        <AssignmentRightButtons
+                          assignmentId={assignment._id}
+                          assignmentTitle={assignment.title}
+                          deleteAssignment={(id) =>
+                            dispatch(deleteAssignment(id))
+                          }
+                        />
+                      )}
                     </div>
                   </li>
                 ))}

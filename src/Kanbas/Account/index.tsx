@@ -7,7 +7,7 @@ import Signup from "./Signup";
 import AccountNavigation from "./Navigation";
 
 export default function Account() {
-  const { currentUser } = useSelector((state: any) => state.account);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   return (
     <div id="wd-account-screen">
       <h2>Account</h2>
