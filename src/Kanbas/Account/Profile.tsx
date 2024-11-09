@@ -7,7 +7,7 @@ export default function Profile() {
   const [profile, setProfile] = useState<any>({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const { currentUser } = useSelector((state: any) => state.account);
   const fetchProfile = () => {
     if (!currentUser) return navigate("/Kanbas/Account/Signin");
     setProfile(currentUser);

@@ -7,9 +7,12 @@ import { addAssignment, updateAssignment } from "./reducer";
 import { setCurrentUser } from "../../Account/reducer";
 
 export default function AssignmentEditor() {
+  const { cid, aid } = useParams();
   const [assignment, setAssignment] = useState<any>({
+    _id: aid,
     title: "",
     description: "",
+    course: cid,
     points: 0,
     group: "ASSIGNMENTS",
     display_grade: "PERCENTAGE",
@@ -19,18 +22,37 @@ export default function AssignmentEditor() {
     available_from_date: "",
     available_until_date: "",
   });
-  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const { assignments } = useSelector((state: any) => state.assignments);
+  const { currentUser } = useSelector((state: any) => state.account);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { cid, aid } = useParams();
 
+  useEffect(() => {
+    if (aid) {
+      const assignmentFromStore = assignments.find(
+        (assignment: any) => assignment._id === aid
+      );
+      if (assignmentFromStore) {
+        setAssignment(assignmentFromStore);
+      }
+    }
+  }, [aid, assignments]);
+
+  {
+    /*
   const fetchAssignment = () => {
     if (!currentUser) return navigate("/Kanbas/Account/Signin");
-    const fetchedAssignment = db.assignments.find(
-      (assignment: any) => assignment._id === aid
-    );
-    if (fetchedAssignment) setAssignment(fetchedAssignment);
+    if (aid) {
+      const fetchedAssignment = db.assignments.find(
+        (assignment: any) => assignment._id === aid
+      );
+      if (fetchedAssignment) {
+        setAssignment(fetchedAssignment);
+      }
+    }
   };
+  */
+  }
 
   const handleChange = (field: string, value: any) => {
     setAssignment((prevAssignment: any) => ({
@@ -40,17 +62,46 @@ export default function AssignmentEditor() {
   };
 
   const handleSave = () => {
-    dispatch(updateAssignment(assignment)); // update the assignment
-    navigate(`/Kanbas/Courses/${cid}/Assignments`); // nagivate back
+    if (!assignment.title || !assignment.points || !assignment.due_date) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
+    if (aid) {
+      console.log("Updating assignment with ID:", aid);
+      dispatch(updateAssignment(assignment));
+    } else {
+      const newAssignment = {
+        _id: aid,
+        title: assignment.title,
+        course: cid,
+        available_from_date: assignment.available_from_date,
+        available_until_date: assignment.available_until_date,
+        due_date: assignment.due_date,
+        description: assignment.description,
+        points: assignment.points,
+        group: assignment.group,
+        display_grade: assignment.display_grade,
+        submission_type: assignment.submission_type,
+        assign_to: assignment.assign_to,
+      };
+      console.log("Dispatching addAssignment action", newAssignment);
+      dispatch(addAssignment(newAssignment));
+    }
+    navigate(`/Kanbas/Courses/${cid}/Assignments`);
   };
 
   const handleCancel = () => {
     navigate(`/Kanbas/Courses/${cid}/Assignments`); // navigate back, don't save
   };
 
+  {
+    /*
   useEffect(() => {
     fetchAssignment();
   }, [aid, currentUser]);
+  */
+  }
 
   // const assignments = db.assignments;
   // const assignment = assignments.find((assignment) => assignment._id === aid);

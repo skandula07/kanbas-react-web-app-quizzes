@@ -18,7 +18,7 @@ export default function Dashboard({
   deleteCourse: (course: any) => void;
   updateCourse: () => void;
 }) {
-  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const { currentUser } = useSelector((state: any) => state.account);
   const { enrollments } = db;
   const isFaculty = currentUser && currentUser.role === "FACULTY";
 

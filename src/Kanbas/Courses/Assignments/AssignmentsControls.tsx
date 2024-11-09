@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 
 export default function AssignmentsControls() {
   const { cid } = useParams();
+  const newAssignmentId = new Date().getTime().toString();
   return (
     <div id="wd-assignments-controls" className="d-flex justify-content-end">
       <div className="input-group w-auto">
@@ -37,7 +38,7 @@ export default function AssignmentsControls() {
       <div>
         <Link
           id="wd-add-assignment"
-          to={`/Kanbas/Courses/${cid}/Assignments/new`}
+          to={`/Kanbas/Courses/${cid}/Assignments/${newAssignmentId}`}
           className="btn btn-lg btn-danger me-1 float-end"
         >
           <FaPlus

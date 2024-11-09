@@ -7,35 +7,37 @@ import Signup from "./Signup";
 import AccountNavigation from "./Navigation";
 
 export default function Account() {
-  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const { currentUser } = useSelector((state: any) => state.account);
   return (
     <div id="wd-account-screen">
       <h2>Account</h2>
       <table>
-        <tr>
-          <td valign="top">
-            <AccountNavigation />
-          </td>
-          <td valign="top">
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Navigate
-                    to={
-                      currentUser
-                        ? "/Kanbas/Account/Profile"
-                        : "/Kanbas/Account/Signin"
-                    }
-                  />
-                }
-              />
-              <Route path="/Signin" element={<Signin />} />
-              <Route path="/Profile" element={<Profile />} />
-              <Route path="/Signup" element={<Signup />} />
-            </Routes>
-          </td>
-        </tr>
+        <tbody>
+          <tr>
+            <td valign="top">
+              <AccountNavigation />
+            </td>
+            <td valign="top">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <Navigate
+                      to={
+                        currentUser
+                          ? "/Kanbas/Account/Profile"
+                          : "/Kanbas/Account/Signin"
+                      }
+                    />
+                  }
+                />
+                <Route path="/Signin" element={<Signin />} />
+                <Route path="/Profile" element={<Profile />} />
+                <Route path="/Signup" element={<Signup />} />
+              </Routes>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );

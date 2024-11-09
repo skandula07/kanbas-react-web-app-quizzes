@@ -13,9 +13,9 @@ import { useSelector, useDispatch } from "react-redux";
 export default function Modules() {
   const { cid } = useParams();
   const [moduleName, setModuleName] = useState("");
-  const { modules } = useSelector((state: any) => state.modulesReducer);
+  const { modules } = useSelector((state: any) => state.modules);
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const { currentUser } = useSelector((state: any) => state.account);
   const isFaculty = currentUser && currentUser.role === "FACULTY";
 
   return (

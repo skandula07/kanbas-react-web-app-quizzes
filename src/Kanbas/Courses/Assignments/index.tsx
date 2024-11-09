@@ -5,7 +5,6 @@ import LessonControlButtons from "../Modules/LessonControlButtons";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { useParams } from "react-router";
 import * as db from "../../Database";
-import AssignmentLeftControls from "./AssignmentLeftControls";
 import { useState } from "react";
 import {
   addAssignment,
@@ -14,14 +13,33 @@ import {
   editAssignment,
 } from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
+import { FaTrash } from "react-icons/fa";
 
 export default function Assignments() {
   const { cid } = useParams();
   const [assignmentTitle, setAssignmentTitle] = useState("");
   //const assignments = db.assignments;
   //const [assignments, setAssignments] = useState<any[]>(db.assignments);
-  const { assignments } = useSelector((state: any) => state.assignments);
+  const assignments = useSelector(
+    (state: any) => state.assignments.assignments
+  );
+  const [assignmentToDelete, setAssignmentToDelete] = useState<{
+    id: string;
+    title: string;
+  } | null>(null);
+  console.log("Assignments in Redux state:", assignments);
   const dispatch = useDispatch();
+
+  const handleDeleteClick = (assignmentId: string, assignmentTitle: string) => {
+    setAssignmentToDelete({ id: assignmentId, title: assignmentTitle });
+  };
+
+  const deleteSelectedAssignment = () => {
+    if (assignmentToDelete) {
+      dispatch(deleteAssignment(assignmentToDelete.id));
+      setAssignmentToDelete(null);
+    }
+  };
 
   return (
     <div>
@@ -94,6 +112,10 @@ export default function Assignments() {
                       </div>
                     </div>
                     <div className="assignment-icons right">
+                      <FaTrash
+                        className="text-danger me-2 mb-1"
+                        onClick={() => deleteAssignment(assignment)}
+                      />
                       <LessonControlButtons />
                     </div>
                   </li>
