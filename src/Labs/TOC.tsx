@@ -89,7 +89,7 @@ export default function TOC() {
           rel="noreferrer"
           className="nav-link"
         >
-          My Render Link
+          Render
         </a>
       </li>
       <li className="nav-item">
@@ -100,7 +100,7 @@ export default function TOC() {
           rel="noreferrer"
           className="nav-link"
         >
-          My Heroku Link
+          Heroku
         </a>
       </li>
     </ul>
