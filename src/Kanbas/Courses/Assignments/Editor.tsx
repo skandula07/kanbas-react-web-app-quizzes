@@ -2,11 +2,50 @@ import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { addAssignment, updateAssignment } from "./reducer";
+import * as coursesClient from "../client";
+import * as assignmentsClient from "./client";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const saveAssignment = async (assignment: any) => {
+    try {
+      await assignmentsClient.updateAssignment(assignment);
+      dispatch(updateAssignment(assignment));
+    } catch (error: any) {
+      setErrorMessage(error.response.data.message);
+    }
+  };
+
+  const createAssignmentForCourse = async () => {
+    if (!cid) return;
+    const newAssignment = {
+      title,
+      course: cid,
+      points,
+      due_date: dueDate,
+      available_from_date: availableFrom || undefined,
+      available_until_date: availableUntil || undefined,
+      description: description || undefined,
+      group: group || undefined,
+      display_grade: displayGrade || undefined,
+      submission_type: submissionType || undefined,
+      assign_to: assignTo || undefined,
+    };
+    try {
+      const assignment = await coursesClient.createAssignmentForCourse(
+        cid,
+        newAssignment
+      );
+      dispatch(addAssignment(assignment));
+    } catch (error: any) {
+      setErrorMessage(error.response.data.message);
+    }
+  };
 
   const assignments = useSelector(
     (state: { assignmentsReducer: { assignments: any[] } }) =>
@@ -40,29 +79,37 @@ export default function AssignmentEditor() {
     }
   }, [assignment]);
 
-  const handleSave = () => {
-    const newAssignment = {
-      _id: aid || new Date().getTime().toString(), // create id if new
-      title,
-      course: cid,
-      points,
-      due_date: dueDate,
-      available_from_date: availableFrom || undefined,
-      available_until_date: availableUntil || undefined,
-      description: description || undefined,
-      group: group || undefined,
-      display_grade: displayGrade || undefined,
-      submission_type: submissionType || undefined,
-      assign_to: assignTo || undefined,
-    };
+  const handleSave = async () => {
+    try {
+      if (!title || !dueDate || points <= 0) {
+        alert("Please fill in all required fields.");
+        return;
+      }
 
-    if (assignment) {
-      dispatch(updateAssignment(newAssignment));
-    } else {
-      dispatch(addAssignment(newAssignment));
+      if (assignment) {
+        const updatedAssignment = {
+          ...assignment,
+          title,
+          points,
+          due_date: dueDate,
+          available_from_date: availableFrom || undefined,
+          available_until_date: availableUntil || undefined,
+          description: description || undefined,
+          group: group || undefined,
+          display_grade: displayGrade || undefined,
+          submission_type: submissionType || undefined,
+          assign_to: assignTo || undefined,
+        };
+        console.log("Updated assignment:", updatedAssignment);
+        await saveAssignment(updatedAssignment);
+      } else {
+        await createAssignmentForCourse();
+      }
+
+      navigate(`/Kanbas/Courses/${cid}/Assignments`);
+    } catch (error: any) {
+      setErrorMessage(error.response.data.message);
     }
-
-    navigate(`/Kanbas/Courses/${cid}/Assignments`);
   };
 
   const handleCancel = () => {
@@ -74,6 +121,14 @@ export default function AssignmentEditor() {
       <div>
         <div>
           <span id="wd-name">Assignment Name</span>
+          {errorMessage && (
+            <div
+              id="wd-todo-error-message"
+              className="alert alert-danger mb-2 mt-2"
+            >
+              {errorMessage}
+            </div>
+          )}
         </div>
         <div className="mb-3">
           <input

@@ -12,18 +12,20 @@ export default function AssignmentRightButtons({
   assignmentTitle: string;
   deleteAssignment: (id: string) => void;
 }) {
+  const modalId = `wd-delete-assignment-dialog-${assignmentId}`;
   return (
     <div className="float-end">
       <FaTrash
         className="text-danger me-2 mb-1"
         data-bs-toggle="modal"
-        data-bs-target="#wd-delete-assignment-dialog" // triggers modal
+        data-bs-target={`#${modalId}`} // triggers modal
       />
 
       <GreenCheckmark />
       <IoEllipsisVertical className="fs-4" />
 
       <AssignmentDeletion
+        modalId={modalId}
         assignmentId={assignmentId}
         assignmentTitle={assignmentTitle}
         deleteAssignment={deleteAssignment}
