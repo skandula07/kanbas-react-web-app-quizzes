@@ -12,6 +12,9 @@ export default function Dashboard({
   addNewCourse,
   deleteCourse,
   updateCourse,
+  enrolling,
+  setEnrolling,
+  updateEnrollment,
 }: {
   courses: any[];
   course: any;
@@ -19,16 +22,11 @@ export default function Dashboard({
   addNewCourse: () => void;
   deleteCourse: (course: any) => void;
   updateCourse: () => void;
+  enrolling: boolean;
+  setEnrolling: (enrolling: boolean) => void;
+  updateEnrollment: (courseId: string, enrolled: boolean) => void;
 }) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  //const { enrollments } = db;
-
-  {
-    /*const { enrolledCourses } = useSelector(
-    (state: any) => state.enrollmentReducer
-  );
-  */
-  }
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -46,39 +44,18 @@ export default function Dashboard({
 
   useEffect(() => {
     if (currentUser?.role === "STUDENT") {
-      setEnrolledCourses(currentUser?.enrolledCourses || []);
+      setEnrolledCourses(currentUser?.courses || []);
     }
   }, [currentUser]);
-
-  const handleToggleEnrollment = async (courseId: string) => {
-    if (enrolledCourses.some((course) => course._id === courseId)) {
-      await userClient.unenrollFromCourse(courseId);
-      setEnrolledCourses(
-        enrolledCourses.filter((course) => course._id !== courseId)
-      );
-    } else {
-      await userClient.enrollInCourse(courseId);
-      setEnrolledCourses([...enrolledCourses, { _id: courseId }]);
-    }
-  };
-
-  const displayedCourses = showAllCourses
-    ? courses
-    : courses.filter((course) =>
-        enrolledCourses.some(
-          (enrolledCourse) => enrolledCourse._id === course._id
-        )
-      );
-
   return (
     <div id="wd-dashboard">
-      <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
+      <h1 id="wd-dashboard-title">Dashboard </h1> <hr />
       {!isFaculty && (
         <button
-          className="btn btn-primary float-end"
-          onClick={() => setShowAllCourses(!showAllCourses)}
+          onClick={() => setEnrolling(!enrolling)}
+          className="float-end btn btn-primary"
         >
-          {showAllCourses ? "My Enrollments" : "Enrollments"}
+          {enrolling ? "My Courses" : "All Courses"}
         </button>
       )}
       {isFaculty && (
@@ -123,13 +100,11 @@ export default function Dashboard({
           <hr />
         </>
       )}
-      <h2 id="wd-dashboard-published">
-        Published Courses ({displayedCourses.length})
-      </h2>{" "}
+      <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2>{" "}
       <hr />
       <div id="wd-dashboard-courses" className="row">
         <div className="row row-cols-1 row-cols-md-5 g-4">
-          {displayedCourses.map((course) => (
+          {courses.map((course) => (
             <div
               key={course._id}
               className="wd-dashboard-course col"
@@ -139,10 +114,7 @@ export default function Dashboard({
                 <Link
                   className="wd-dashboard-course-link text-decoration-none text-dark"
                   to={
-                    !isFaculty &&
-                    !enrolledCourses.some(
-                      (enrolledCourse) => enrolledCourse._id === course._id
-                    )
+                    enrolling && !course.enrolled
                       ? "/Kanbas/Dashboard"
                       : `/Kanbas/Courses/${course._id}/Home`
                   }
@@ -150,6 +122,19 @@ export default function Dashboard({
                   <img src="/images/reactjs.jpeg" width="100%" height={160} />
                   <div className="card-body">
                     <h5 className="wd-dashboard-course-title card-title">
+                      {enrolling && (
+                        <button
+                          onClick={(event) => {
+                            event.preventDefault();
+                            updateEnrollment(course._id, !course.enrolled);
+                          }}
+                          className={`btn ${
+                            course.enrolled ? "btn-danger" : "btn-success"
+                          } float-end`}
+                        >
+                          {course.enrolled ? "Unenroll" : "Enroll"}
+                        </button>
+                      )}
                       {course.name}
                     </h5>
                     <p
@@ -158,7 +143,7 @@ export default function Dashboard({
                     >
                       {course.description}
                     </p>
-                    <button className="btn btn-primary me-2"> Go </button>
+                    <button className="btn btn-primary me-2">Go</button>
 
                     {isFaculty && (
                       <>
@@ -183,28 +168,6 @@ export default function Dashboard({
                           Edit
                         </button>
                       </>
-                    )}
-                    {!isFaculty && (
-                      <button
-                        className={`btn ${
-                          enrolledCourses.some(
-                            (enrolledCourse) =>
-                              enrolledCourse._id === course._id
-                          )
-                            ? "btn-danger me-2"
-                            : "btn-success me-2"
-                        }`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleToggleEnrollment(course._id);
-                        }}
-                      >
-                        {enrolledCourses.some(
-                          (enrolledCourse) => enrolledCourse._id === course._id
-                        )
-                          ? "Unenroll"
-                          : "Enroll"}
-                      </button>
                     )}
                   </div>
                 </Link>
@@ -392,6 +355,13 @@ export default function Dashboard({
 }
 
 
+const displayedCourses = showAllCourses
+    ? courses
+    : courses.filter((course) =>
+        enrolledCourses.some(
+          (enrolledCourse) => enrolledCourse._id === course._id
+        )
+      );
 
 */
 }

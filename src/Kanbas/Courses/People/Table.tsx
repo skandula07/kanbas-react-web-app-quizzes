@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import PeopleDetails from "./Details";
 import * as client from "../../Account/client";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function PeopleTable({ users = [] }: { users?: any[] }) {
   return (

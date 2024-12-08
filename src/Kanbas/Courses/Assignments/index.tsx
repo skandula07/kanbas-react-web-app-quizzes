@@ -80,23 +80,26 @@ export default function Assignments() {
                     {assignment.title}
                     <div>
                       <span className="text-danger">Multiple Modules</span> |{" "}
-                      <b>Not Available until</b>{" "}
-                      {new Date(assignment.available_from_date).toLocaleString(
-                        "default",
-                        { month: "long" }
+                      {assignment?.available_from_date && (
+                        <>
+                          <b>Not Available until</b>{" "}
+                          {new Date(
+                            assignment.available_from_date
+                          ).toLocaleString("default", { month: "long" })}{" "}
+                          {new Date(
+                            assignment.available_from_date
+                          ).toLocaleString("default", { day: "numeric" })}{" "}
+                          {" at "}
+                          {new Date(
+                            assignment.available_from_date
+                          ).toLocaleTimeString("default", {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}{" "}
+                          | <br />{" "}
+                        </>
                       )}{" "}
-                      {new Date(assignment.available_from_date).toLocaleString(
-                        "default",
-                        { day: "numeric" }
-                      )}{" "}
-                      {" at "}
-                      {new Date(
-                        assignment.available_from_date
-                      ).toLocaleTimeString("default", {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}{" "}
-                      | <br /> <b>Due</b>{" "}
+                      <b>Due</b>{" "}
                       {new Date(assignment.due_date).toLocaleString("default", {
                         month: "long",
                       })}{" "}
