@@ -12,8 +12,13 @@ export default function Labs() {
   return (
     <Provider store={store}>
       <div className="container-fluid">
-        <h3>Gillian Scott</h3>
         <h4>CS 4550 - Section 01</h4>
+        <ul id="project-members">
+          <li>Gillian Scott</li>
+          <li>Sree Kandula</li>
+          <li>Giovanna Bruno</li>
+          <li>Parnika Jain</li>
+        </ul>
         <h1>Labs</h1>
         <TOC />
         <Routes>

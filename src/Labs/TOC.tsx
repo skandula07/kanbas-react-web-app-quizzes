@@ -62,45 +62,23 @@ export default function TOC() {
       <li className="nav-item">
         <a
           id="wd-github"
-          href="https://github.com/gscott04/kanbas-react-web-app-cs4550"
+          href="https://github.com/skandula07/kanbas-react-web-app-quizzes"
           target="_blank"
           rel="noreferrer"
           className="nav-link"
         >
-          My Web App GitHub
+          React GitHub
         </a>
       </li>
       <li className="nav-item">
         <a
           id="wd-server-github"
-          href="https://github.com/gscott04/kanbas-server-app-cs4550"
+          href="https://github.com/skandula07/kanbas-node-server-app-quizzes"
           target="_blank"
           rel="noreferrer"
           className="nav-link"
         >
-          My Server GitHub
-        </a>
-      </li>
-      <li className="nav-item">
-        <a
-          id="wd-render-link"
-          href="https://kanbas-node-server-app-cs4550.onrender.com"
-          target="_blank"
-          rel="noreferrer"
-          className="nav-link"
-        >
-          Render
-        </a>
-      </li>
-      <li className="nav-item">
-        <a
-          id="wd-heroku-link"
-          href="https://kanbas-node-server-app-cs-4550-d47240a54607.herokuapp.com"
-          target="_blank"
-          rel="noreferrer"
-          className="nav-link"
-        >
-          Heroku
+          Node GitHub
         </a>
       </li>
     </ul>
