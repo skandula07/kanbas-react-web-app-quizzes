@@ -23,6 +23,7 @@ export default function Courses({ courses }: { courses: any[] }) {
   };
   useEffect(() => {
     fetchUsers();
+    // eslint-disable-next-line
   }, [cid]);
 
   const { pathname } = useLocation();

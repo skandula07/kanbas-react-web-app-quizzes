@@ -66,19 +66,3 @@ const enrollmentSlice = createSlice({
 
 export const { toggleEnrollment, setEnrollments } = enrollmentSlice.actions;
 export default enrollmentSlice.reducer;
-
-{
-  /*toggleEnrollment: (state, { payload: courseId }: { payload: string }) => {
-      // check if course is already in enrolledCourses[]
-      const isEnrolled = state.enrolledCourses.includes(courseId);
-      state.enrolledCourses = isEnrolled
-        ? state.enrolledCourses.filter((id) => id !== courseId) // Unenroll
-        : [...state.enrolledCourses, courseId]; // Enroll
-    },
-
-    // Set enrollments directly (e.g., after fetching from a backend).
-    setEnrollments: (state, { payload }: { payload: string[] }) => {
-      state.enrolledCourses = payload;
-    },
-   */
-}

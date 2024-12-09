@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Labs from "./Labs";
 import Kanbas from "./Kanbas";
-import { Navigate, HashRouter, Link, Route, Routes } from "react-router-dom";
+import { Navigate, HashRouter, Route, Routes } from "react-router-dom";
 import store from "./Kanbas/store";
 import { Provider } from "react-redux";
 

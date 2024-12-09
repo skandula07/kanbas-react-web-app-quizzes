@@ -23,7 +23,7 @@ export default function Float() {
         </div>
         <img
           className="wd-float-right"
-          src="https://www.staradvertiser.com/wp-content/uploads/2021/08/web1_Starship-gap2.jpg"
+          src="https://www.staradvertiser.com/wp-content/uploads/2021/08/web1_Starship-gap2.jpg" alt=""
         />
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -38,6 +38,7 @@ export default function Float() {
           className="wd-float-left"
           width={200}
           src="https://www.staradvertiser.com/wp-content/uploads/2021/08/web1_Starship-gap2.jpg"
+          alt=""
         />
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

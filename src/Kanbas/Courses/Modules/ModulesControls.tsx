@@ -38,7 +38,7 @@ export default function ModulesControls({
             <a
               id="wd-publish-all-modules-and-items-btn"
               className="dropdown-item"
-              href="#"
+              href="/"
             >
               <GreenCheckmark />
               Publish all modules and items
@@ -48,7 +48,7 @@ export default function ModulesControls({
             <a
               id="wd-publish-modules-only-button"
               className="dropdown-item"
-              href="#"
+              href="/"
             >
               <GreenCheckmark />
               Publish modules only
@@ -61,7 +61,7 @@ export default function ModulesControls({
             <a
               id="wd-unpublish-all-modules-and-items"
               className="dropdown-item"
-              href="#"
+              href="/"
             >
               <MdDoNotDisturb className="me-1 position-relative" />
               Unpublish all modules and items
@@ -71,7 +71,7 @@ export default function ModulesControls({
             <a
               id="wd-unpublish-modules-only"
               className="dropdown-item"
-              href="#"
+              href="/"
             >
               <MdDoNotDisturb className="me-1 position-relative" />
               Unpublish modules only

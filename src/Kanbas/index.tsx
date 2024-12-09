@@ -66,6 +66,7 @@ export default function Kanbas() {
     } else {
       findCoursesForUser();
     }
+    // eslint-disable-next-line
   }, [currentUser, enrolling]);
 
   const [course, setCourse] = useState<any>({
@@ -81,7 +82,7 @@ export default function Kanbas() {
     setCourses([...courses, newCourse]);
   };
   const deleteCourse = async (courseId: any) => {
-    const status = await courseClient.deleteCourse(courseId);
+    // const status = await courseClient.deleteCourse(courseId);
     setCourses(courses.filter((course) => course._id !== courseId));
   };
   const updateCourse = async () => {

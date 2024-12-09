@@ -6,13 +6,10 @@ import { useParams } from "react-router";
 
 import {
   setAssignments,
-  addAssignment,
-  editAssignment,
-  updateAssignment,
   deleteAssignment,
 } from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import * as coursesClient from "../client";
 import * as assignmentsClient from "./client";
 
@@ -42,6 +39,7 @@ export default function Assignments() {
   };
   useEffect(() => {
     fetchAssignments();
+    // eslint-disable-next-line
   }, []);
 
   return (

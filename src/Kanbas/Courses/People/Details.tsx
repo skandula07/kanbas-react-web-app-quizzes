@@ -3,7 +3,6 @@ import { FaPencil } from "react-icons/fa6";
 import { FaCheck, FaUserCircle } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 import { useParams, useNavigate } from "react-router";
-import { Link } from "react-router-dom";
 import * as client from "../../Account/client";
 export default function PeopleDetails() {
   const { uid } = useParams();
@@ -11,7 +10,6 @@ export default function PeopleDetails() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
 
-  const isFaculty = user?.role === "FACULTY";
 
   const [editing, setEditing] = useState(false);
   const saveUser = async () => {
@@ -35,6 +33,7 @@ export default function PeopleDetails() {
   };
   useEffect(() => {
     if (uid) fetchUser();
+    // eslint-disable-next-line
   }, [uid]);
   if (!uid) return null;
 
