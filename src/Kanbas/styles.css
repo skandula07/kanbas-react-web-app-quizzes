@@ -1,0 +1,82 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+body   {  margin: 0;  padding: 0;  }
+body * {  font-family: Arial, Helvetica, sans-serif;  }
+
+@media (min-width: 768px) {
+  #wd-kanbas .wd-main-content-offset {
+    padding-left: 140px !important;
+  }
+}
+.list-group.wd > .list-group-item.active {
+    color: black;
+    background-color: white;
+    border-left: 3px solid black !important;
+  }
+  .btn-secondary {
+    --bs-btn-color: #000 !important;
+    --bs-btn-bg: #c7cdd1 !important;
+    --bs-btn-border-color: #c7cdd1 !important;
+    --bs-btn-hover-color: #fff !important;
+  }
+  .bg-secondary {
+    --bs-secondary-rgb: 199, 205, 209;
+  }
+  .list-group-item {
+    --bs-list-group-border-color: gray;
+    border-left: 5px solid green !important;
+    width: 60%;
+    margin: auto;
+
+  }
+  .wd-lesson {
+    border-left: 3px solid green !important;
+    position: relative;
+  }
+  .gray{
+    color: rgb(139, 0, 0) !important;
+    }
+    .bold{
+      font-weight: bold !important;
+      text-transform: uppercase;
+      font-size: 1rem;
+      color:#252525;
+      font-family: "Raleway";
+    }
+    .padding{
+      padding-right: 1rem !important;
+    
+    }
+    .flex{
+      display: flex;
+      flex-direction: row;
+      width: max-content;
+      margin-right: 1rem;
+      margin-top: 0.5rem;
+    }
+    .quizDetails{
+      padding-left: 3.4rem;
+      display: flex;
+      
+      /* justify-content: space-between; */
+    }
+    .quizDetails > p{
+      margin-right: 1rem;
+      font-size: 0.8rem;
+      font-weight: bold ;
+      color: gray;
+    }
+    .margin{
+      margin-left: 3.4rem;
+      padding-top: 1rem;
+    }
+    .rocket{
+      position: absolute;
+      color: green;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .red{
+      color:rgb(169, 0, 0) !important;
+    }
