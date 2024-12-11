@@ -15,7 +15,7 @@ export default function TrueFalse(){
             </div>
             <div className="d-flex align-items-center">
             <button className={`btn me-2 ${answer=="False"? "btn-success": "btn-outline-secondary"}`}
-                onClick={()=>setAnswer("True")}>
+                onClick={()=>setAnswer("False")}>
                     <FaCheck className="me-1"/>
                     false
                 </button>
