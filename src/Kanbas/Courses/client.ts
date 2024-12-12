@@ -3,6 +3,21 @@ const axiosWithCredentials = axios.create({ withCredentials: true });
 const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
 const COURSES_API = `${REMOTE_SERVER}/api/courses`;
 
+export const createQuizForCourse = async (courseId: string, quiz: any) => {
+  const response = await axiosWithCredentials.post(
+    `${COURSES_API}/${courseId}/quizzes`,
+    quiz
+  );
+  return response.data;
+};
+
+export const findQuizzesForCourse = async (courseId: string) => {
+  const response = await axiosWithCredentials.get(
+    `${COURSES_API}/${courseId}/quizzes`
+  );
+  return response.data;
+};
+
 export const createAssignmentForCourse = async (
   courseId: string,
   assignment: any
@@ -62,5 +77,4 @@ export const createCourse = async (course: any) => {
 export const findUsersForCourse = async (courseId: string) => {
   const response = await axios.get(`${COURSES_API}/${courseId}/users`);
   return response.data;
- };
- 
+};
