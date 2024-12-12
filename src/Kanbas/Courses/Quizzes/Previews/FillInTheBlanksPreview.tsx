@@ -21,11 +21,28 @@ interface FillInTheBlanksPreviewProps {
 }
 
 export default function FillInTheBlanksPreview({ question, index }: FillInTheBlanksPreviewProps) {
-  const { title, points, question: textQuestion } = question;
+  const { title, points, question: textQuestion, choices } = question;
   const [studentAnswer, setStudentAnswer] = useState<string>("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = () => {
-    console.log(`Submitted Answer for Question ${index + 1}:`, studentAnswer);
+    if (studentAnswer === null) {
+      alert("Please select an option before submitting.");
+      return;
+    }
+
+    // Find the selected choice
+    const selectedChoice = choices?.find(choice => choice.text === studentAnswer);
+    
+    // Check if the selected answer is correct
+    if (selectedChoice?.isCorrect) {
+      alert("Correct answer!");
+    } else {
+      alert("Incorrect answer.");
+    }
+
+    // Mark the answer as submitted
+    setIsSubmitted(true);
   };
 
   return (

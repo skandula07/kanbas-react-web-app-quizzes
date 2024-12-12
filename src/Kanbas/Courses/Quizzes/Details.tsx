@@ -19,7 +19,13 @@ export default function QuizDetails() {
     <div>
       {isFaculty && (
         <div className="quiz-d-btns ">
-          <button className="btn btn-secondary me-1">Preview</button>
+            <Link
+          id="wd-edit-quiz"
+          to={`/Kanbas/Courses/${cid}/Quizzes/${qid}/Preview`}
+          // className="btn btn-secondary me-1"
+        >
+        <button className="btn btn-secondary me-1">Preview</button>
+        </Link>
           <Link
             id="wd-edit-quiz"
             to={`/Kanbas/Courses/${cid}/Quizzes/${qid}/Editor`}

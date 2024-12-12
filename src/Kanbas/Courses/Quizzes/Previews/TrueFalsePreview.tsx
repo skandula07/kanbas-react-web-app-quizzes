@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router';
+import  * as answersClient from "./answersClient"
 
 interface Choice {
   text: string;
@@ -25,6 +28,11 @@ export default function TrueFalsePreview({ question, index }: TrueFalseProps) {
   
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const {cid, qid} = useParams();
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const userId = currentUser._id;
+
+
 
   const handleSubmit = () => {
     if (selectedAnswer === null) {
@@ -32,9 +40,9 @@ export default function TrueFalsePreview({ question, index }: TrueFalseProps) {
       return;
     }
 
-    // Find the selected choice based on the text ("True" or "False")
+    // Find the selected choice
     const selectedChoice = choices?.find(choice => choice.text === selectedAnswer);
-
+    
     // Check if the selected answer is correct
     if (selectedChoice?.isCorrect) {
       alert("Correct answer!");
@@ -45,6 +53,7 @@ export default function TrueFalsePreview({ question, index }: TrueFalseProps) {
     // Mark the answer as submitted
     setIsSubmitted(true);
   };
+  
 
   return (
     <div className="flex m-2">
@@ -69,7 +78,7 @@ export default function TrueFalsePreview({ question, index }: TrueFalseProps) {
                 value="True"
                 className="form-check-input"
                 onChange={() => setSelectedAnswer("True")}
-                disabled={isSubmitted}  // Disable after submission
+                // disabled={isSubmitted}  // Disable after submission
               />
               <label className="form-check-label" htmlFor="true">
                 True
@@ -85,7 +94,7 @@ export default function TrueFalsePreview({ question, index }: TrueFalseProps) {
                 value="False"
                 className="form-check-input"
                 onChange={() => setSelectedAnswer("False")}
-                disabled={isSubmitted}  // Disable after submission
+                // disabled={isSubmitted}  // Disable after submission
               />
               <label className="form-check-label" htmlFor="false">
                 False
@@ -98,7 +107,7 @@ export default function TrueFalsePreview({ question, index }: TrueFalseProps) {
           <button
             className="btn btn-light me-2 border"
             onClick={handleSubmit}
-            disabled={isSubmitted}  // Disable submit button after submission
+            // disabled={isSubmitted}  // Disable submit button after submission
           >
             {isSubmitted ? "Answer Submitted" : "Submit Answer"}
           </button>

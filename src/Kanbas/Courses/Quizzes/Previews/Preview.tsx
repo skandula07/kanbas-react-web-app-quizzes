@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
+import { Link } from "react-router-dom";
 import FillInTheBlanksPreview from "./FillInTheBlanksPreview";
 import MultipleChoicePreview from "./MultipleChoicePreview";
 import { setQuestions } from "./questionReducer";
@@ -33,7 +34,7 @@ interface FillInTheBlanksPreviewProps {
 }
 
 export default function Preview() {
-  const { qid } = useParams(); // Get quiz ID from URL
+  const { cid, qid } = useParams(); // Get quiz ID from URL
   const { currentUser } = useSelector((state: any) => state.accountReducer); // Get current user from Redux
   const isFaculty = currentUser && currentUser.role === "FACULTY"; // Check if the user is a faculty member
   const [questions, setQuestions] = useState<Question[]>([]); // State to store questions
@@ -129,7 +130,15 @@ export default function Preview() {
             >
               Next
             </button>
+            
           </div>
+          <Link to={(`/Kanbas/Courses/${cid}/Quizzes/${qid}`)}>
+          <button
+          className="btn btn-danger"
+          >
+            Submit Quiz
+          </button>
+          </Link>
         </div>
       )}
     </div>

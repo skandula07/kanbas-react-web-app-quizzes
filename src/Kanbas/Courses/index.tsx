@@ -29,6 +29,7 @@ export default function Courses({ courses }: { courses: any[] }) {
     fetchUsers();
   }, [cid]);
 
+
   const { pathname } = useLocation();
   return (
     <div id="wd-courses">
