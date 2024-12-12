@@ -17,3 +17,7 @@ export const deleteQuiz = async (quizId: string) => {
   );
   return response.data;
 };
+export function findQizzesForCourse(_id: any) {
+  throw new Error("Function not implemented.");
+}
+

@@ -13,5 +13,3 @@ export const findQuestionsForQuiz = async (quizId: string) => {
   };
 
 
-        // <Preview />
-
