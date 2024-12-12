@@ -52,8 +52,8 @@ export default function Quizzes() {
         const updateChoice = (index: number, text: string, isCorrect: boolean) => {
                 const updatedChoices = choices.map((choice, i) =>
                         i === index
-                                ? { ...choice, text, isCorrect }
-                                : { ...choice, text, isCorrect: isCorrect ? false : choice.isCorrect }
+                                ? { text, isCorrect }
+                                : { ...choice, isCorrect: isCorrect ? false : choice.isCorrect }
                 );
                 setChoices(updatedChoices);
         };
@@ -92,20 +92,20 @@ export default function Quizzes() {
                 <WordEditor content={content} setContent={setContent} />
                 <div className="mb-3">
                         <label className="form-label fw-bold">Answers:</label>
-                        {component === "mtchoice" ?
+                        {component === "mtchoice" ?(
                                 <MultipleChoiceQuestionEditor
                                         choices={choices}
                                         updateChoice={updateChoice}
-                                        removeChoice={removeChoice} /> : <TrueFalse />
+                                        removeChoice={removeChoice} /> ): (<TrueFalse />)
                         }
                 </div>
-                <div className="d-flex justify-content-end">
+                {component === "mtchoice" && <div className="d-flex justify-content-end">
                         <button className="btn btn-link text-danger position-relatve"
                                 style={{ right: 0 }}
                                 onClick={addChoice}>
                                 + Add Another Answer
                         </button>
-                </div>
+                </div>}
                 <div className="d-flex justify-content-start">
                         <button className="btn btn-secondary me-2"
 
