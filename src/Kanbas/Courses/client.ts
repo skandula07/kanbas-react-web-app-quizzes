@@ -11,6 +11,7 @@ export const createQuizForCourse = async (courseId: string, quiz: any) => {
   return response.data;
 };
 
+
 export const findQuizzesForCourse = async (courseId: string) => {
   const response = await axiosWithCredentials.get(
     `${COURSES_API}/${courseId}/quizzes`

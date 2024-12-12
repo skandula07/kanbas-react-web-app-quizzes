@@ -42,6 +42,7 @@ export default function QuizDetailsEditor() {
       dueDate: dueDate || undefined,
       availableDate: availableDate || undefined,
       untilDate: untilDate || undefined,
+      published: published || undefined,
     };
     try {
       const quiz = await coursesClient.createQuizForCourse(cid, newQuiz);
@@ -75,8 +76,8 @@ export default function QuizDetailsEditor() {
   const [dueDate, setDueDate] = useState("");
   const [availableDate, setAvailableDate] = useState("");
   const [untilDate, setUntilDate] = useState("");
+  const [published, setPublished] = useState("");
 
-  console.log("quiz: ", quiz);
   useEffect(() => {
     if (quiz) {
       setTitle(quiz.title);
@@ -96,6 +97,7 @@ export default function QuizDetailsEditor() {
       setDueDate(quiz.dueDate);
       setAvailableDate(quiz.availableDate || "");
       setUntilDate(quiz.untilDate || "");
+      setPublished(quiz.published || "");
     }
   }, [quiz]);
 
@@ -126,6 +128,7 @@ export default function QuizDetailsEditor() {
           dueDate: dueDate || undefined,
           availableDate: availableDate || undefined,
           untilDate: untilDate || undefined,
+          published: published || undefined,
         };
         console.log("Updated quiz:", updatedQuiz);
         await saveQuiz(updatedQuiz);
@@ -139,8 +142,49 @@ export default function QuizDetailsEditor() {
     }
   };
 
+  const handleSavePublish = async () => {
+    try {
+      if (!quizType) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+
+      if (quiz) {
+        const updatedQuiz = {
+          ...quiz,
+          title,
+          points,
+          description: description || undefined,
+          quizType: quizType || undefined,
+          group: group || undefined,
+          shuffleAnswers: shuffleAnswers || undefined,
+          timeLimit: timeLimit || undefined,
+          multipleattempts: multipleAttempts || undefined,
+          howManyAttempts: howManyAttempts || undefined,
+          showCorrectAnswers: showCorrectAnswers || undefined,
+          accessCode: accessCode || undefined,
+          oneQuestionAtATime: oneQuestionAtATime || undefined,
+          webcamRequired: webcamRequired || undefined,
+          lockQuestionsAfterAnswering: lockQuestionsAfterAnswering || undefined,
+          dueDate: dueDate || undefined,
+          availableDate: availableDate || undefined,
+          untilDate: untilDate || undefined,
+          published: true,
+        };
+        console.log("Updated quiz:", updatedQuiz);
+        await saveQuiz(updatedQuiz);
+      } else {
+        await createQuizForCourse();
+      }
+
+      navigate(`/Kanbas/Courses/${cid}/Quizzes`);
+    } catch (error: any) {
+      setErrorMessage(error.response.data.message);
+    }
+  };
+
   const handleCancel = () => {
-    navigate(`/Kanbas/Courses/${cid}/Quizzes/${qid}`); // navigate back, don't save
+    navigate(`/Kanbas/Courses/${cid}/Quizzes`); // navigate back, don't save
   };
 
   return (
@@ -426,6 +470,13 @@ export default function QuizDetailsEditor() {
               className="btn btn-lg btn-danger me-1 float-end"
             >
               Save
+            </button>
+            <button
+              id="save-publish-button"
+              onClick={handleSavePublish}
+              className="btn btn-lg btn-success me-1 float-end"
+            >
+              Save & Publish
             </button>
             <button
               id="cancel-button"

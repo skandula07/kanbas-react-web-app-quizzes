@@ -243,3 +243,11 @@ body * {
 .w-pt {
   max-width: 75px !important;
 }
+
+.rocket {
+  position: absolute;
+  color: green;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -10,22 +10,29 @@ export default function QuizDetails() {
       state.quizzesReducer.quizzes || []
   );
   const quiz = quizzes.find((q) => q._id === qid);
+
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const isFaculty = currentUser && currentUser.role === "FACULTY";
+  const isStudent = currentUser && currentUser.role === "STUDENT";
+
   return (
     <div>
-      <div className="quiz-d-btns ">
-        <button className="btn btn-secondary me-1">Preview</button>
-        <Link
-          id="wd-edit-quiz"
-          to={`/Kanbas/Courses/${cid}/Quizzes/${qid}/Editor`}
-          className="btn btn-secondary me-1 float-center"
-        >
-          <PiNotePencil
-            className="position-relative me-2"
-            style={{ bottom: "1px" }}
-          />
-          Edit
-        </Link>
-      </div>
+      {isFaculty && (
+        <div className="quiz-d-btns ">
+          <button className="btn btn-secondary me-1">Preview</button>
+          <Link
+            id="wd-edit-quiz"
+            to={`/Kanbas/Courses/${cid}/Quizzes/${qid}/Editor`}
+            className="btn btn-secondary me-1 float-center"
+          >
+            <PiNotePencil
+              className="position-relative me-2"
+              style={{ bottom: "1px" }}
+            />
+            Edit
+          </Link>
+        </div>
+      )}
 
       <hr />
       <div>
@@ -169,6 +176,18 @@ export default function QuizDetails() {
           </div>
           <hr className="hr-10" />
         </div>
+
+        {isStudent && (
+          <div className="quiz-d-btns ">
+            <Link
+              id="wd-edit-quiz"
+              to={`/Kanbas/Courses/${cid}/Quizzes/${qid}/Active`}
+              className="btn btn-danger me-1 float-center"
+            >
+              Start Quiz
+            </Link>
+          </div>
+        )}
         <br />
         <br />
         <br />

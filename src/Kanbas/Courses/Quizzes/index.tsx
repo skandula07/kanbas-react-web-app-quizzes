@@ -3,6 +3,7 @@ import { PiNotePencil } from "react-icons/pi";
 import QuizzesControls from "./QuizzesControls";
 import QuizControlButtons from "./QuizControlButtons";
 import { useParams } from "react-router";
+import { RxRocket } from "react-icons/rx";
 
 import {
   setQuizzes,
@@ -23,6 +24,7 @@ export default function Quizzes() {
   const { cid } = useParams();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const isFaculty = currentUser && currentUser.role === "FACULTY";
+  const isStudent = currentUser && currentUser.role === "STUDENT";
 
   const quizzes = useSelector((state: any) => state.quizzesReducer.quizzes);
 
@@ -34,8 +36,15 @@ export default function Quizzes() {
   };
 
   const fetchQuizzes = async () => {
-    const quizzes = await coursesClient.findQuizzesForCourse(cid as string);
-    dispatch(setQuizzes(quizzes));
+    if (isStudent) {
+      const quizzes = await coursesClient.findQuizzesForCourse(cid as string);
+      const publishedQuizzes = quizzes.filter((quiz: any) => quiz.published);
+
+      dispatch(setQuizzes(publishedQuizzes));
+    } else {
+      const quizzes = await coursesClient.findQuizzesForCourse(cid as string);
+      dispatch(setQuizzes(quizzes));
+    }
   };
   useEffect(() => {
     fetchQuizzes();
@@ -63,14 +72,12 @@ export default function Quizzes() {
                 >
                   <div className="quiz-icons">
                     <BsGripVertical className="me-2 fs-3" />
-                    {isFaculty && (
-                      <a
-                        className="wd-quizzes-details"
-                        href={`#/Kanbas/Courses/${cid}/Quizzes/${quiz._id}`}
-                      >
-                        <PiNotePencil className="text-success me-2 fs-3" />
-                      </a>
-                    )}
+                    <a
+                      className="wd-quizzes-details"
+                      href={`#/Kanbas/Courses/${cid}/Quizzes/${quiz._id}`}
+                    >
+                      <RxRocket className="text-success me-2 fs-3" />
+                    </a>
                   </div>
                   <div className="quiz-info">
                     {quiz.title}
