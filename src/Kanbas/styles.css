@@ -151,3 +151,37 @@ body * {
 #wd-modules-controls .dropdown-menu {
   min-width: 250px; /* Optional: ensures dropdown has minimum width */
 }
+
+.quiz-d-box {
+  max-width: 600px;
+}
+
+.quiz-d-names {
+  text-align: right;
+  flex: 0 0 40%;
+  margin-right: 0px;
+  max-width: 40%;
+  padding-right: 5px;
+  font-weight: bold;
+}
+
+.quiz-d-details {
+  text-align: left;
+  flex: 1;
+  max-width: 60%;
+  flex-wrap: wrap;
+  padding-left: 5px;
+}
+
+.bold-font {
+  font-weight: bold;
+}
+
+.hr-10 {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.quiz-d-btns {
+  text-align: center;
+}
