@@ -8,7 +8,10 @@ import { Navigate, Route, Routes, useParams, useLocation } from "react-router";
 import { FaAlignJustify } from "react-icons/fa6";
 import PeopleTable from "./People/Table";
 import Quizzes from "./Quizzes";
-import QuizDetails from "./Quizzes/QuizDetails";
+import QuizEditor from "./Quizzes/Editor";
+import QuizDetails from "./Quizzes/Details";
+import QuizDetailsEditor from "./Quizzes/DetailsEditor";
+import QuizQuestionsEditor from "./Quizzes/QuestionsEditor";
 //import { findUsersForCourse } from "./client";
 import { useEffect, useState } from "react";
 import * as client from "./client";
@@ -46,6 +49,7 @@ export default function Courses({ courses }: { courses: any[] }) {
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
             <Route path="Quizzes" element={<Quizzes />} />
             <Route path="Quizzes/:qid" element={<QuizDetails />} />
+            <Route path="Quizzes/:qid/Editor/*" element={<QuizEditor />} />
             <Route path="People" element={<PeopleTable users={users} />} />
           </Routes>
         </div>
