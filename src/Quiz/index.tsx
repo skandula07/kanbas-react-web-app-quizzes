@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import WordEditor from "./WordEditor";
-import { Choice } from "../../../type";
+
 import MultipleChoiceQuestionEditor from "./MultipleChoiceQuestionEditor";
 import TrueFalse from "./TrueFalseQuiz";
+import { Choice } from "../types";
 
 
 export default function Quizzes() {

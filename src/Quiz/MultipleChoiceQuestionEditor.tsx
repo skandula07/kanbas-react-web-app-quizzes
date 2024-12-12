@@ -5,7 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FaTrash, FaCheck } from "react-icons/fa";
 
 import { ImArrowRight } from "react-icons/im";
-import { Choice } from "../../../type";
+import { Choice } from "../types";
+
 
 
 interface MultipleChoiceProps {
